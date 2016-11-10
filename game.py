@@ -1,93 +1,56 @@
 import random
-value = ["камінь", "ножиці" ,"папір" ]
-comp_chose = random.choice(value)
+value = ["камінь", "ножиці", "папір"]
 
+
+def choose():
+    value = ["камінь", "ножиці", "папір"]
+    comp = random.choice(value)
+    you = input('Вибери камінь , ножиці або папір     ')
+    return you, comp
+
+def end_game():
+    end = input('хочеш продовжити? натисни будь-яку клавішу   ')
+    if end == "ні":
+        print("Гуляй , СЛАБАК")
+        return False
+    else:
+        print("Ок , попробуємо ще раз")
+        return True
+
+def lose(comp_choose):
+    print('Компютер викинув   ' + comp_choose)
+    print('Ти програв')
+    end_game()
+
+def win(comp_choose):
+    print('Компютер викинув   ' + comp_choose)
+    print('Ти переміг')
+    end_game()
+
+def pat(comp_choose):
+    print('Компютер викинув   ' + comp_choose)
+    print('Нічия')
+    end_game()
+
+def err():
+    print('Ти дурак?!?! вибери камінь , ножиці або папір')
+    end_game()
 
 while True:
-    you_chose = input('Вибери камінь , ножиці або папір     ')
-    comp_chose = random.choice(value)
-    if you_chose not in value:
-        print('Ти дурак, вибери камінь , ножиці або папір')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end=="ні" :
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-
-    elif you_chose == comp_chose:
-        print('Компютер викинув   ' + comp_chose)
-        print('Нічия')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-
-    elif you_chose == "папір" and comp_chose == "ножиці":
-        print('Компютер викинув   ' + comp_chose)
-        print('Ти програв')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-
-    elif you_chose == "папір" and comp_chose == "камінь":
-        print('Компютер викинув   ' + comp_chose)
-        print('Ти переміг')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-
-    elif you_chose == "камінь" and comp_chose == "ножиці":
-        print('Компютер викинув   ' + comp_chose)
-        print('Ти переміг')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-
-    elif you_chose == "камінь" and comp_chose == "папір":
-        print('Компютер викинув   ' + comp_chose)
-        print('Ти програв')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-    elif you_chose == "ножиці" and comp_chose == "камінь":
-        print('Компютер викинув   ' + comp_chose)
-        print('Ти програв')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-    elif you_chose == "ножиці" and comp_chose == "папір":
-        print('Компютер викинув   ' + comp_chose)
-        print('Ти переміг')
-        end = input('хочеш продовжити? натисни будь-яку клавішу   ')
-        if end == "ні":
-            print("До побачення , СЛАБАК")
-            break
-        else:
-            print("Ок , попробуємо ще раз")
-            continue
-
+    you_choose , comp_choose = choose()
+    if  you_choose not in value:
+        err()
+    elif you_choose == comp_choose:
+        pat(comp_choose)
+    elif you_choose == "папір" and comp_choose == "ножиці":
+        lose(comp_choose)
+    elif you_choose == "папір" and comp_choose == "камінь":
+        win(comp_choose)
+    elif you_choose == "камінь" and comp_choose == "ножиці":
+        win(comp_choose)
+    elif you_choose == "камінь" and comp_choose == "папір":
+        lose(comp_choose)
+    elif you_choose == "ножиці" and comp_choose == "камінь":
+        lose(comp_choose)
+    elif you_choose == "ножиці" and comp_choose == "папір":
+        win(comp_choose)
