@@ -1,6 +1,5 @@
 import random
-value = ["камінь", "ножиці", "папір"]
-
+()
 
 def choose():
     value = ["камінь", "ножиці", "папір"]
@@ -38,7 +37,7 @@ def err():
 
 while True:
     you_choose , comp_choose = choose()
-    if  you_choose not in value:
+    if you_choose not in value:
         err()
     elif you_choose == comp_choose:
         pat(comp_choose)
